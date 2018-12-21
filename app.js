@@ -41,7 +41,7 @@ app.post("/campgrounds", function(req, res){
         image: image,
         description: description
     });
-    res.redirect("/index");
+    res.redirect("/campgrounds");
 });
 
 app.get("/campgrounds/new", function(req, res){
@@ -59,7 +59,6 @@ app.get("/campgrounds/:id", function(req, res){
     });
     
 })
-
-app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("the server has started");
+app.listen(5300, function(){
+    console.log('listening request on port 5300');
 });
