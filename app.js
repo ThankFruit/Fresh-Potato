@@ -5,14 +5,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 var mongoose = require("mongoose")
 mongoose.connect("mongodb://localhost/db");
 
-//SCHEMA SETUP
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
-var Campground = mongoose.model("Campground", campgroundSchema);
+Campground = require("./models/campground");
+Comment = require("./models/comment");
+seedDB = require("./seeds");
 
+
+seedDB();
 app.set("view engine", "ejs");//不用再写.ejs
 
 app.get("/", function(req, res){
@@ -24,7 +22,7 @@ app.get("/campgrounds", function(req, res){
         if(err){
             console.log(err);
         }else{
-            res.render("index", {campgrounds: allcampgrounds});
+            res.render("campgrounds/index", {campgrounds: allcampgrounds});
         }
     });
     
@@ -41,24 +39,55 @@ app.post("/campgrounds", function(req, res){
         image: image,
         description: description
     });
-    res.redirect("/campgrounds");
+    res.redirect("campgrounds/campgrounds");
 });
 
 app.get("/campgrounds/new", function(req, res){
-    res.render("new");
+    res.render("campgrounds/new");
 });
 
 //SHOW shows more info about this tv show
 app.get("/campgrounds/:id", function(req, res){
-    Campground.findById(req.params.id, function(err, foundCampground){
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
         if(err){
             console.log(err);
         }else{
-            res.render("show", {campground: foundCampground});
+            res.render("campgrounds/show", {campground: foundCampground});
         }
     });
     
-})
+});
+
+//comment routes
+app.get("/campgrounds/:id/comments/new", function(req, res){
+    Campground.findById(req.params.id, function(err, campground){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("comments/new", {campground: campground});
+        }
+    });
+});
+app.post("/campgrounds/:id/comments", function(req, res){
+    Campground.findById(req.params.id, function(err, campground){
+        if(err){
+            console.log(err);
+            res.redirect("/campgrounds");
+        }else{
+            Comment.create(req.body.comment, function(err, comment){
+                if(err){
+                    console.log(err);
+                }else{
+                    campground.comments.push(comment);
+                    campground.save();
+                    res.redirect("/campgrounds/"+campground._id);
+                }
+            })
+            
+        }
+    })
+});
+
 app.listen(5300, function(){
     console.log('listening request on port 5300');
 });
