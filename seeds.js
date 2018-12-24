@@ -6,17 +6,17 @@ var data = [
 	{
 		name: "rick and morty",
 		image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-		description: "abc"
+		description: "o	Designed and developed single page front-end with VueJS, ES6, and webpack, applied Vue Router for building single page applications and Vue Resouce for interacting with back-end data Created RESTful API and set up MVC backend with Spring Boot, Mybatis, and MySQL Deployed with Tomcat, Nginx for load balancer, and Redis for distribute locks, achieved session sharing Implemented message push with WebSockets, user "
 	},
 	{
 		name: "rick and morty",
 		image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-		description: "abc"
+		description: "o	Designed and developed single page front-end with VueJS, ES6, and webpack, applied Vue Router for building single page applications and Vue Resouce for interacting with back-end data Created RESTful API and set up MVC backend with Spring Boot, Mybatis, and MySQL Deployed with Tomcat, Nginx for load balancer, and Redis for distribute locks, achieved session sharing Implemented message push with WebSockets, user "
 	},
 	{
 		name: "rick and morty",
 		image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-		description: "abc"
+		description: "o	Designed and developed single page front-end with VueJS, ES6, and webpack, applied Vue Router for building single page applications and Vue Resouce for interacting with back-end data Created RESTful API and set up MVC backend with Spring Boot, Mybatis, and MySQL Deployed with Tomcat, Nginx for load balancer, and Redis for distribute locks, achieved session sharing Implemented message push with WebSockets, user "
 	}
 ]
 

@@ -9,6 +9,7 @@ Campground = require("./models/campground");
 Comment = require("./models/comment");
 seedDB = require("./seeds");
 
+app.use(express.static(__dirname+"/public"));
 
 seedDB();
 app.set("view engine", "ejs");//不用再写.ejs
